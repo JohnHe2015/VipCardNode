@@ -1,0 +1,15 @@
+{
+  "name": "VipCardNode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JohnHe2015/VipCardNode.git",
+  "author": "johnHe <xiaozhemu@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "uuid": "^3.3.2"
+  }
+}
