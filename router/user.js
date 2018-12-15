@@ -7,7 +7,6 @@ const {get_sql,post_sql} = require('./../map/user/user_map');
 let errmsg = '';
 //register
 router.post('/post',(req,res,next)=>{
-    console.log('come ine ');
     let {username,password,mobile,birthday,sex} = req.body;
     password = common.md5(password);
     let id = common.uuid();
@@ -20,14 +19,25 @@ router.post('/post',(req,res,next)=>{
         }
         else
         {
-            next();
+            res.sendStatus(200);//next();
+            res.end();
         }
     });
 });
 
 //logout
 router.get('/get',(req,res,next)=>{
-    console.log('haha');
+    req.db.query(get_sql,(err,data)=>{
+        if(err)
+        {
+            errmsg = '服务器忙，请稍后重试哦';
+            // res.redirect('/login');
+        }
+        else
+        {
+            res.end(JSON.stringify(data));
+        }
+    });
 });
 
 module.exports = router;

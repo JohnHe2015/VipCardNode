@@ -12,6 +12,21 @@ const app = express();
 app.listen(8081);
 //db
 const db = mysql.createPool(dbconfig.mysql);
+
+app.all('*',(req,res,next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    if(!req.db)
+    {
+        req.db = db;
+    }
+    if (req.method == 'OPTIONS') {
+        res.send(200);
+      } else {
+        next();
+      }
+});
 //set ejs template env
 //app.set('view engine','ejs');
 //app.set('views',__dirname + '/ejs');
@@ -21,48 +36,9 @@ app.use(express.static('./public'));
 app.use(cookieParser());
 //body parser
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //validate all req , if user login
-app.use((req,res,next)=>{
-    //传送数据库对象
-    // if(!req.db)
-    // {
-    //     req.db = db;
-    // }
-    // if((!req.cookies['token'] && req.url != '/login') || req.url == "/")
-    // {
-    //     res.redirect('/login');
-    // }
-    // else if(req.url == '/login')
-    // {
-    //     next();
-    // }
-    // else
-    // {
-    //     db.query(`SELECT ID FROM user_table WHERE ID='${req.cookies['token']}'`,(err,data)=>{
-    //         if(err)
-    //         {
-    //             res.status(500).send('db error');
-    //         }
-    //         else if(data.length == 0)
-    //         {
-    //             res.send('伪造cookie啊你');
-    //         }
-    //         else
-    //         {
-    //             next();
-    //             //res.redirect(req.url);
-    //         }
-    //     }); 
-    // }
 
-
-    //这里需要对请求的origin头进行过滤
-    if(!req.db)
-    {
-        req.db = db;
-    }
-    next();
-});
 // add User router
 app.use('/user',userRouter);
 // add admin router
