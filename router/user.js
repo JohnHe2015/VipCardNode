@@ -25,7 +25,7 @@ router.post('/post',(req,res,next)=>{
     });
 });
 
-//logout
+//getuser
 router.get('/get',(req,res,next)=>{
     req.db.query(get_sql,(err,data)=>{
         if(err)
