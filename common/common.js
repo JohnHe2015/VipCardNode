@@ -15,7 +15,7 @@ module.exports = {
     },
     getFullDate : function(date)
     {
-        var date = new Date(date*1000);//如果date为13位不需要乘1000
+        var date = new Date(date);//如果date为13位不需要乘1000
         var Y = date.getFullYear() + '-';
         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
@@ -26,7 +26,7 @@ module.exports = {
     },
     getDate : function(date)
     {
-        var date = new Date(date*1000);//如果date为13位不需要乘1000
+        var date = new Date(date);//如果date为13位不需要乘1000
         var Y = date.getFullYear() + '-';
         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';

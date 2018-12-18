@@ -7,11 +7,11 @@ const {get_sql,post_sql,posttemp_sql,gettemp_sql,deltemp_sql} = require('./../ma
 let errmsg = '';
 //register
 router.post('/post',(req,res,next)=>{
-    let {username,password,mobile,birthday,sex} = req.body;
+    let {username,password,mobile,birthday,sex,level} = req.body;
     password = common.md5(password);
     let id = common.uuid();
     let createTime = common.getTime();
-    req.db.query(post_sql,[id,username,password,mobile,sex,birthday,1,createTime],(err,data)=>{
+    req.db.query(post_sql,[id,username,password,mobile,sex,birthday,level,createTime],(err,data)=>{
         if(err)
         {
             errmsg = '服务器忙，请稍后重试哦';
@@ -54,7 +54,19 @@ router.get('/get',(req,res,next)=>{
         }
         else
         {
-            res.end(JSON.stringify(data));
+            let newData = [];
+            Array.from(data).map((item,index) =>{
+               newData.push({
+                   ID: item.ID,
+                   username: item.username,
+                   password: item.password,
+                   moible : item.mobile,
+                   sex : item.sex,
+                   level : item.level == "1" ? "MUSEE会员" : "VIP会员",
+                   createTime : common.getDate(parseInt(item.createTime))
+               })
+            })
+            res.end(JSON.stringify(newData));
         }
     });
 });
@@ -69,7 +81,18 @@ router.get('/gettemp',(req,res,next)=>{
         }
         else
         {
-            res.end(JSON.stringify(data));
+            let newData = [];
+            Array.from(data).map((item,index) =>{
+               newData.push({
+                   ID: item.ID,
+                   username: item.username,
+                   password: item.password,
+                   moible : item.mobile,
+                   sex : item.sex,
+                   createTime : common.getFullDate(parseInt(item.createTime))
+               })
+            })
+            res.end(JSON.stringify(newData));
         }
     });
 });
