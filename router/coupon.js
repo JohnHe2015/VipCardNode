@@ -19,7 +19,6 @@ router.get('/get',(req,res,next)=>{
             let useTime = '';
 
             Array.from(data).map((item,index) =>{
-                console.log(item.isUse);
                 if(item.type == 1)
                 {
                     type = "咖啡券";
