@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const dbconfig = require('./config/mysql.config.js');
 const common = require('./common/common.js');
 const userRouter = require('./router/user');
+const couponRouter = require('./router/coupon');
 
 
 
@@ -42,6 +43,7 @@ app.use(bodyParser.json());
 // add User router
 app.use('/user',userRouter);
 // add admin router
+app.use('/coupon',couponRouter);
 //app.use('/admin',chatroomRouter);
 //add main router
 //app.use('/admin',mainRouter);
