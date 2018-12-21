@@ -6,6 +6,7 @@ const dbconfig = require('./config/mysql.config.js');
 const common = require('./common/common.js');
 const userRouter = require('./router/user');
 const couponRouter = require('./router/coupon');
+const wxRouter = require('./router/wx');
 
 
 
@@ -14,13 +15,14 @@ app.listen(8081);
 //db
 const db = mysql.createPool(dbconfig.mysql);
 
+//开发所有请求全通过，后期加白名单
 app.all('*',(req,res,next)=>{
     res.header('Access-Control-Allow-Origin', '*');
     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     if(!req.db)
     {
-        req.db = db;
+        req.db = db;   //挂载db对象
     }
     if (req.method == 'OPTIONS') {
         res.send(200);
@@ -40,15 +42,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //validate all req , if user login
 
-// add User router
+//add routers
 app.use('/user',userRouter);
-// add admin router
 app.use('/coupon',couponRouter);
-//app.use('/admin',chatroomRouter);
-//add main router
-//app.use('/admin',mainRouter);
-//additional
-//app.use('/jinshuju',jinshuju);
+app.use('/wx',wxRouter);
+
 
 
 
