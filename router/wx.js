@@ -80,5 +80,20 @@ router.get('/qrcord/get',(req,res,next)=>{
     });
 })
 
+router.get('/config/get',(req,res,next)=>{
+    var param = {
+        debug : true,
+        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
+        url: 'http://zhengshuqin.xyz',
+    }
+    api.getJsConfig(param, (err,result)=>{
+        if(err) console.log(err)
+        else
+        {
+            res.end(JSON.stringify(result));
+        }
+    });
+})
+
 
 module.exports = router;
