@@ -9,6 +9,7 @@ router.get('/get',(req,res,next)=>{
         if(err)
         {
             errmsg = '服务器忙，请稍后重试哦';
+            res.end(errmsg);
         }
         else
         {

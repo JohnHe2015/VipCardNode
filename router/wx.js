@@ -1,7 +1,7 @@
 //微信管理的接口
 const express = require('express');
 const router = express.Router();
-const common = require('./../common/common');
+const request = require('request');
 const WechatApi = require('wechat-api');
 const wxConfig = require('./../config/wx.config')
 const api = new WechatApi(wxConfig.wx.appID,wxConfig.wx.appsecret);
@@ -93,6 +93,24 @@ router.get('/config/get',(req,res,next)=>{
             res.end(JSON.stringify(result));
         }
     });
+})
+
+router.get('/auth',(req,res,next)=>{
+    let scope = "snsapi_userinfo" || "snsapi_base"    //default snsapi_base
+    let state = "";
+    let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wxConfig.wx.appID}&redirect_uri=${wxConfig.wx.redirect_url}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
+    request(url, (err,response,body)=>{
+        if(err) console.log(err)
+        else
+        {
+            if(response && response.statusCode == "200")
+            {
+                console.log(JSON.stringify(response));
+                res.send(body);
+                res.end();
+            }
+        }
+    })
 })
 
 

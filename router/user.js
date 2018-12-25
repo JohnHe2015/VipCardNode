@@ -15,7 +15,7 @@ router.post('/post',(req,res,next)=>{
         if(err)
         {
             errmsg = '服务器忙，请稍后重试哦';
-            // res.redirect('/login');
+            res.end(errmsg);
         }
         else
         {
@@ -34,7 +34,7 @@ router.post('/posttemp',(req,res,next)=>{
         if(err)
         {
             errmsg = '服务器忙，请稍后重试哦';
-            // res.redirect('/login');
+            res.end(errmsg);
         }
         else
         {
@@ -50,7 +50,7 @@ router.get('/get',(req,res,next)=>{
         if(err)
         {
             errmsg = '服务器忙，请稍后重试哦';
-            // res.redirect('/login');
+            res.end(errmsg);
         }
         else
         {
@@ -77,7 +77,7 @@ router.get('/gettemp',(req,res,next)=>{
         if(err)
         {
             errmsg = '服务器忙，请稍后重试哦';
-            // res.redirect('/login');
+            res.end(errmsg);
         }
         else
         {
@@ -105,7 +105,7 @@ router.post('/deltemp',(req,res,next)=>{
         if(err)
         {
             errmsg = '服务器忙，请稍后重试哦';
-            // res.redirect('/login');
+            res.end(errmsg);
         }
         else
         {

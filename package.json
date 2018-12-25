@@ -10,6 +10,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
+    "request": "^2.88.0",
     "uuid": "^3.3.2",
     "wechat-api": "^1.35.1"
   }
