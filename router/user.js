@@ -87,7 +87,8 @@ router.get('/gettemp',(req,res,next)=>{
                    ID: item.ID,
                    username: item.username,
                    password: item.password,
-                   moible : item.mobile,
+                   birthday: item.birthday,
+                   mobile : item.mobile,
                    sex : item.sex,
                    createTime : common.getFullDate(parseInt(item.createTime))
                })
