@@ -60,8 +60,9 @@ router.get('/get',(req,res,next)=>{
                    ID: item.ID,
                    username: item.username,
                    password: item.password,
-                   moible : item.mobile,
+                   mobile : item.mobile,
                    sex : item.sex,
+                   birthday : item.birthday,
                    level : item.level == "1" ? "MUSEE会员" : "VIP会员",
                    createTime : common.getDate(parseInt(item.createTime))
                })
