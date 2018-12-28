@@ -11,7 +11,7 @@ const wxRouter = require('./router/wx');
 
 
 const app = express();
-app.listen(80);
+app.listen(8081);
 //db
 const db = mysql.createPool(dbconfig.mysql);
 
