@@ -113,7 +113,7 @@ router.get('/auth',(req,res,next)=>{
     // })
     var router = 'wx/get_wx_access_token';
     // 这是编码后的地址
-    var return_uri = encodeURIComponent('http://www.zhengshuqian.com:8081/'+router);
+    var return_uri = encodeURIComponent('http://www.zhengshuqian.com/'+router);
     var scope = 'snsapi_userinfo';
     res.redirect(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wxConfig.wx.appID}&redirect_uri=${return_uri}&response_type=code&scope=${scope}&state=STATE#wechat_redirect`);
     //res.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid='+AppID+'&redirect_uri='+return_uri+'&response_type=code&scope='+scope+'&state=STATE#wechat_redirect');
